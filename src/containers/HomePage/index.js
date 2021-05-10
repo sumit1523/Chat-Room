@@ -9,7 +9,7 @@ const User = (props) => {
 	const { user, onClick } = props;
 
 	return (
-		<div onClick={() => onClick(user)} className="displayName">
+		<div onClick={() => onClick(user)} className={`displayName`}>
 			<div className="displayPic">
 				<img src="https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg" alt="" />
 			</div>
@@ -81,7 +81,6 @@ const HomePage = (props) => {
 		scrollToBottom();
 	}
 
-
 	return (
 		<Layout>
 			<section className="container">
@@ -101,18 +100,17 @@ const HomePage = (props) => {
 				</div>
 
 				<div className="chatArea">
-
 					<div className="chatHeader">
 						{
-							chatStarted ? chatUser : ''
+							chatStarted ? chatUser : 'Welcome to Chat Room'
 						}
 					</div>
 					<div className="messageSections">
 						{
 							chatStarted ?
 								user.conversations.map(con =>
-									<div style={{ textAlign: con.user_uid_1 == auth.uid ? 'right' : 'left' }}>
-										<p className="messageStyle" >{con.message}</p>
+									<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
+										<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
 									</div>)
 								: null
 						}
