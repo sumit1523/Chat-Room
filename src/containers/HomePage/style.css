@@ -51,6 +51,7 @@
     padding: 5px 10px;
     box-sizing: border-box;
     cursor: pointer;
+	border: 2px solid lightslategray;
 }
 
 .displayName.active{
