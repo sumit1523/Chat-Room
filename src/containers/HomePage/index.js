@@ -112,7 +112,12 @@ const HomePage = (props) => {
 							{chatStarted ?
 								user.conversations.map(con =>
 									<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left', margin: '5px' }}>
-										<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
+										<div className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >
+											<div className="sender_pic">
+												{con.user_uid_1 === auth.uid ? 'S' : 'R'}
+											</div>
+											<p>{con.message}</p>
+										</div>
 									</div>)
 								: null
 							}
