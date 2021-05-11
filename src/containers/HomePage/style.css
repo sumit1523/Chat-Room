@@ -8,7 +8,7 @@
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
 	.container {
-		height: calc(100% - 81px);
+		height: 100%;
 	}
   }
 .listOfUsers{
