@@ -102,19 +102,21 @@ const HomePage = (props) => {
 				</div>
 
 				<div className="chatArea">
-					<div className="chatHeader" style={{ background: `radial-gradient(#${setBg()}, #000000b0)` }}>
-						{
-							chatStarted ? chatUser : 'Welcome to Chat Room'
-						}
-					</div>
 					<div className="messageSections">
-						{chatStarted ?
-							user.conversations.map(con =>
-								<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left', margin: '5px' }}>
-									<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
-								</div>)
-							: null
-						}
+						<div className="chatHeader" style={{ background: `radial-gradient(#${setBg()}, #000000b0)` }}>
+							{
+								chatStarted ? chatUser : 'Welcome to Chat Room'
+							}
+						</div>
+						<div style={{ paddingTop: '40px' }}>
+							{chatStarted ?
+								user.conversations.map(con =>
+									<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left', margin: '5px' }}>
+										<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
+									</div>)
+								: null
+							}
+						</div>
 						<div ref={endOfMessage}></div>
 					</div>
 					{
