@@ -31,7 +31,7 @@ const HomePage = (props) => {
 	const [message, setMessage] = useState('');
 	const [userUid, setUserUid] = useState(null);
 	let unsubscribe;
-
+	const keepFocus = useRef(null);
 	const endOfMessage = useRef(null);
 	useEffect(() => {
 		// eslint-disable-next-line
@@ -78,6 +78,7 @@ const HomePage = (props) => {
 					setMessage('')
 				});
 		}
+		keepFocus.current.focus();
 		scrollToBottom();
 	}
 
@@ -123,6 +124,7 @@ const HomePage = (props) => {
 										onChange={(e) => setMessage(e.target.value)}
 										placeholder="Write Message"
 										style={{ width: '78%' }}
+										ref={keepFocus}
 									/>
 									<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
 								</div>
