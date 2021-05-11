@@ -1,9 +1,8 @@
 .header{
     width: 100%;
     position: relative;
-    height: 60px;
     display: flex;
-    background: #c000ff;
+    background: radial-gradient(#b100fa, #9b3ef070);
     justify-content: space-between;
     box-sizing: border-box;
 }

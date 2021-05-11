@@ -21,7 +21,7 @@
     position: fixed;
     width: 70%;
     height: 40px;
-    background: #e2e0e0;
+    background: linear-gradient(45deg, purple, transparent);
     text-align: center;
     line-height: 40px;
     color: #000;
@@ -81,7 +81,7 @@
 	background: salmon;
 }
 .messageSections{
-    height: calc(100% - 90px);
+    height: calc(100% - 100px);
     width: 100%;
     overflow-x: hidden;
     position: relative;

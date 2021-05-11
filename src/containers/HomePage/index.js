@@ -85,17 +85,16 @@ const HomePage = (props) => {
 		<Layout>
 			<section className="container">
 				<div className="listOfUsers">
-					{
-						user.users.length > 0 ?
-							user.users.map(user => {
-								return (
-									<User
-										onClick={initChat}
-										key={user.uid}
-										user={user}
-									/>
-								);
-							}) : null
+					{user.users.length > 0 ?
+						user.users.map(user => {
+							return (
+								<User
+									onClick={initChat}
+									key={user.uid}
+									user={user}
+								/>
+							);
+						}) : null
 					}
 				</div>
 
@@ -106,13 +105,12 @@ const HomePage = (props) => {
 						}
 					</div>
 					<div className="messageSections">
-						{
-							chatStarted ?
-								user.conversations.map(con =>
-									<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
-										<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
-									</div>)
-								: null
+						{chatStarted ?
+							user.conversations.map(con =>
+								<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
+									<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
+								</div>)
+							: null
 						}
 						<div ref={endOfMessage}></div>
 					</div>
@@ -124,8 +122,9 @@ const HomePage = (props) => {
 										value={message}
 										onChange={(e) => setMessage(e.target.value)}
 										placeholder="Write Message"
+										style={{ width: '80%' }}
 									/>
-									<button onClick={(e) => submitMessage(e)}>Send</button>
+									<button style={{ width: '20%' }} onClick={(e) => submitMessage(e)}>Send</button>
 								</div>
 							</form>
 							: null

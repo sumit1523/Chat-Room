@@ -15,7 +15,7 @@ const Header = (props) => {
 	const dispatch = useDispatch();
 	return (
 		<header className="header">
-			<div style={{ display: 'flex' }}>
+			<div>
 				<div className="logo">WebChat Room</div>
 				{
 					!auth.authenticated ?
@@ -25,7 +25,7 @@ const Header = (props) => {
 						</ul> : null
 				}
 			</div>
-			<div style={{ margin: '20px 0', color: '#fff', fontWeight: 'bold' }}>
+			<div style={{ display: 'flex', alignItems: 'center', color: '#fff', fontWeight: 'bold' }}>
 				{auth.authenticated ? `Hi ${auth.firstName} ${auth.lastName}` : ''}
 			</div>
 			<ul className="menu">
