@@ -2,7 +2,7 @@
     display: flex;
     position: absolute;
     width: 100%;
-    height: calc(100% - 64px);
+    height: calc(100vh - 55px);
     overflow: hidden;
 }
 /* On screens that are 600px or less, set the background color to olive */
