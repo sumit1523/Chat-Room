@@ -81,7 +81,9 @@ const HomePage = (props) => {
 		keepFocus.current.focus();
 		scrollToBottom();
 	}
-
+	const setBg = () => {
+		return Math.floor(Math.random() * 16777215).toString(16);
+	}
 	return (
 		<Layout>
 			<section className="container">
@@ -100,7 +102,7 @@ const HomePage = (props) => {
 				</div>
 
 				<div className="chatArea">
-					<div className="chatHeader">
+					<div className="chatHeader" style={{ background: `radial-gradient(#${setBg()}, #000000b0)` }}>
 						{
 							chatStarted ? chatUser : 'Welcome to Chat Room'
 						}
