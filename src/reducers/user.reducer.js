@@ -28,7 +28,7 @@ export default (state = intiState, action) => {
 				conversations: []
 			}
 			break;
-
+		default: break;
 	}
 
 

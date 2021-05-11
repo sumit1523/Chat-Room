@@ -11,7 +11,7 @@ export const getRealtimeUsers = (uid) => {
 			.onSnapshot((querySnapshot) => {
 				const users = [];
 				querySnapshot.forEach(function (doc) {
-					if (doc.data().uid != uid) {
+					if (doc.data().uid !== uid) {
 						users.push(doc.data());
 					}
 				});
@@ -60,9 +60,9 @@ export const getRealtimeConversations = (user, scrollToBottom) => {
 				const conversations = [];
 				let userconversation = [];
 				querySnapshot.forEach(doc => {
-					userconversation = (doc.data().user_uid_1 == user.uid_1 && doc.data().user_uid_2 == user.uid_2)
+					userconversation = (doc.data().user_uid_1 === user.uid_1 && doc.data().user_uid_2 === user.uid_2)
 						||
-						(doc.data().user_uid_1 == user.uid_2 && doc.data().user_uid_2 == user.uid_1);
+						(doc.data().user_uid_1 === user.uid_2 && doc.data().user_uid_2 === user.uid_1);
 
 					if (userconversation) {
 						conversations.push(doc.data())

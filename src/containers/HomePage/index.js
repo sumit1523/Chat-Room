@@ -107,7 +107,7 @@ const HomePage = (props) => {
 					<div className="messageSections">
 						{chatStarted ?
 							user.conversations.map(con =>
-								<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left' }}>
+								<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left', margin: '5px' }}>
 									<p className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >{con.message}</p>
 								</div>)
 							: null
@@ -124,7 +124,7 @@ const HomePage = (props) => {
 										placeholder="Write Message"
 										style={{ width: '80%' }}
 									/>
-									<button style={{ width: '20%' }} onClick={(e) => submitMessage(e)}>Send</button>
+									<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
 								</div>
 							</form>
 							: null

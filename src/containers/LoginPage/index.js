@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/Layout';
 import Card from '../../components/UI/Card';
-import { signin, isLoggedInUser } from '../../actions';
+import { signin } from '../../actions';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -29,7 +29,6 @@ const LoginPage = (props) => {
 			alert("Password is required");
 			return;
 		}
-
 		dispatch(signin({ email, password }));
 	}
 
@@ -41,6 +40,7 @@ const LoginPage = (props) => {
 		<Layout>
 			<div className="loginContainer">
 				<Card>
+					<p>LOGIN</p>
 					<form onSubmit={userLogin}>
 						<input
 							name="email"

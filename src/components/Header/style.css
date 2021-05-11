@@ -2,7 +2,7 @@
     width: 100%;
     position: relative;
     display: flex;
-    background: radial-gradient(#b100fa, #9b3ef070);
+    background: radial-gradient(#807f81, #000000b0);
     justify-content: space-between;
     box-sizing: border-box;
 }

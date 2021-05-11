@@ -18,7 +18,7 @@ function App() {
 		if (!auth.authenticated) {
 			dispatch(isLoggedInUser())
 		}
-	}, [auth.authenticated]);
+	}, [auth.authenticated, dispatch]);
 
 
 	return (

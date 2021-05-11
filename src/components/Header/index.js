@@ -15,7 +15,7 @@ const Header = (props) => {
 	const dispatch = useDispatch();
 	return (
 		<header className="header">
-			<div>
+			<div style={{ display: 'flex' }}>
 				<div className="logo">WebChat Room</div>
 				{
 					!auth.authenticated ?

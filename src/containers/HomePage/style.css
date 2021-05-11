@@ -2,26 +2,29 @@
     display: flex;
     position: absolute;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 64px);
     overflow: hidden;
 }
 .listOfUsers{
     width: 30%;
     height: 100%;
     overflow-x: hidden;
-    border-right: 1px solid #ccc;
+    border-right: 4px solid darkgrey;
+	background-color: lightgray;
 }
 .chatArea{
     width: 70%;
     height: 100%;
     overflow-x: hidden;
     position: relative;
+	background-color: lightgrey;
+
 }
 .chatHeader{
     position: fixed;
     width: 70%;
     height: 40px;
-    background: linear-gradient(45deg, purple, transparent);
+    background: dimgrey;
     text-align: center;
     line-height: 40px;
     color: #000;
@@ -70,7 +73,7 @@
 .messageStyle-left,
 .messageStyle-right
 {
-    background: skyblue;
+    background: blueviolet;
     display: inline-block;
     padding: 5px 10px;
     border-radius: 10px;
@@ -78,11 +81,10 @@
     display: inline-block;
 }
 .messageStyle-right {
-	background: salmon;
+	background: teal;
 }
 .messageSections{
-    height: calc(100% - 100px);
-    width: 100%;
+	height: calc(100% - 90px);
     overflow-x: hidden;
     position: relative;
     top: 40px;
