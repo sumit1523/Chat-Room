@@ -4,7 +4,6 @@ import Layout from '../../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRealtimeUsers, updateMessage, getRealtimeConversations } from '../../actions';
 
-
 const User = (props) => {
 	const { user, onClick } = props;
 
@@ -35,6 +34,7 @@ const HomePage = (props) => {
 
 	const endOfMessage = useRef(null);
 	useEffect(() => {
+		// eslint-disable-next-line
 		unsubscribe = dispatch(getRealtimeUsers(auth.uid))
 			.then(unsubscribe => {
 				return unsubscribe;
