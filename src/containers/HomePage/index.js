@@ -122,7 +122,7 @@ const HomePage = (props) => {
 										value={message}
 										onChange={(e) => setMessage(e.target.value)}
 										placeholder="Write Message"
-										style={{ width: '80%' }}
+										style={{ width: '78%' }}
 									/>
 									<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
 								</div>

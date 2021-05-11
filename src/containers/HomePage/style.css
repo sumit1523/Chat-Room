@@ -36,7 +36,7 @@
     position: fixed;
     width: 70%;
     height: 50px;
-    bottom: 0;
+    bottom: 5px;
 }
 .chatControls textarea{
     width: 90%;
