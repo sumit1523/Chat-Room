@@ -31,7 +31,7 @@ const Header = (props) => {
 				}
 			</div>
 			<div style={{ display: 'flex', alignItems: 'center', color: '#fff', fontWeight: 'bold' }}>
-				{auth.authenticated ? `Hi ${auth.firstName} ${auth.lastName}` : ''}
+				{auth.authenticated ? `Hi,  ${auth.firstName} ${auth.lastName}` : ''}
 			</div>
 			<ul className="menu">
 				{
