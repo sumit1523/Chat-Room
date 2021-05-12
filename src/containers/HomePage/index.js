@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRealtimeUsers, updateMessage, getRealtimeConversations } from '../../actions';
 
 const User = (props) => {
-	const { user, onClick } = props;
+	const { user, onClick, selectedUserUid } = props;
 
 	return (
-		<div onClick={() => onClick(user)} className={`displayName`}>
+		<div onClick={() => onClick(user)} className={`displayName ${selectedUserUid === user.uid ? 'active' : ''}`}>
 			<div className="displayPic">
 				<img src="https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg" alt="" />
 			</div>
@@ -66,8 +66,8 @@ const HomePage = (props) => {
 
 	const initChat = (user) => {
 		setChatStarted(true);
-		setChatUser(`${user.firstName} ${user.lastName}`);
-		setSenderFistName(`${user.firstName}`);
+		setChatUser(`${user.firstName} ${user.lastName} `);
+		setSenderFistName(`${user.firstName} `);
 		setUserUid(user.uid);
 		dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }, scrollToBottom, onsendMsg));
 	}
@@ -108,6 +108,7 @@ const HomePage = (props) => {
 									onClick={initChat}
 									key={user.uid}
 									user={user}
+									selectedUserUid={userUid}
 								/>
 							);
 						}) : null
