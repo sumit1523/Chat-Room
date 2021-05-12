@@ -28,11 +28,16 @@ const HomePage = (props) => {
 
 	const [chatStarted, setChatStarted] = useState(false);
 	const [chatUser, setChatUser] = useState('');
+	const [chatFirstUser, setChatFistNameUser] = useState('');
 	const [message, setMessage] = useState('');
 	const [userUid, setUserUid] = useState(null);
+
 	let unsubscribe;
+
 	const keepFocus = useRef(null);
+	const audioRef = useRef();
 	const endOfMessage = useRef(null);
+
 	useEffect(() => {
 		// eslint-disable-next-line
 		unsubscribe = dispatch(getRealtimeUsers(auth.uid))
@@ -58,12 +63,18 @@ const HomePage = (props) => {
 			block: 'start'
 		});
 	}
+
 	const initChat = (user) => {
 		setChatStarted(true);
 		setChatUser(`${user.firstName} ${user.lastName}`);
+		setChatFistNameUser(`${user.firstName}`);
 		setUserUid(user.uid);
-		dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }, scrollToBottom));
+		dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }, scrollToBottom, onsendMsg));
 	}
+
+	const onsendMsg = () => {
+		audioRef.current.play();
+	};
 
 	const submitMessage = (e) => {
 		e.preventDefault();
@@ -78,12 +89,14 @@ const HomePage = (props) => {
 					setMessage('')
 				});
 		}
+		onsendMsg();
 		keepFocus.current.focus();
 		scrollToBottom();
 	}
 	const setBg = () => {
 		return Math.floor(Math.random() * 16777215).toString(16);
 	}
+	console.log(user, 'fsfs');
 	return (
 		<Layout>
 			<section className="container">
@@ -114,7 +127,7 @@ const HomePage = (props) => {
 									<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left', margin: '5px' }}>
 										<div className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >
 											<div className="sender_pic">
-												{con.user_uid_1 === auth.uid ? 'S' : 'R'}
+												{con.user_uid_1 === auth.uid ? auth?.firstName : chatFirstUser}
 											</div>
 											<p>{con.message}</p>
 										</div>
@@ -135,6 +148,7 @@ const HomePage = (props) => {
 										style={{ width: '78%' }}
 										ref={keepFocus}
 									/>
+									<audio ref={audioRef} src={require("../../assets/sound1.mp3")} />
 									<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
 								</div>
 							</form>

@@ -81,14 +81,14 @@
 .messageStyle-left,
 .messageStyle-right
 {
-    background: blueviolet;
+    background: tomato;
     padding: 5px 10px;
     border-radius: 10px;
     margin: 5px;
-    display: inline-flex;
+    display: inline-block;
 }
 .messageStyle-right {
-	background: teal;
+	background: darkgoldenrod;
 }
 .messageSections{
 	height: calc(100% - 62px);
@@ -113,15 +113,17 @@
     background-color: lightgrey;
 }
 .sender_pic{
-	height: 20px;
-	width: 20px;
-	background-color: chocolate;
-	border-radius: 20px;
-	color: white;
-	justify-content: center;
-	text-align: center;
-	align-items:center;
-	margin-right: 10px;
-	background-image: url('https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg');
-	background-size: cover;
+	padding: 4px;
+	margin-top: 2px;
+    margin-bottom: 2px;
+    display: table;
+    background-color: darkkhaki;
+    border-radius: 20px;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-right: 10px;
+    /* background-image: url(https://i.pinimg.com/originals/be/ac/96/beac96b….jpg); */
+    background-size: cover;
 }

@@ -49,7 +49,7 @@ export const updateMessage = (msgObj) => {
 	}
 }
 
-export const getRealtimeConversations = (user, scrollToBottom) => {
+export const getRealtimeConversations = (user, scrollToBottom, onsendMsg) => {
 	return async dispatch => {
 
 		const db = firestore();
@@ -74,6 +74,7 @@ export const getRealtimeConversations = (user, scrollToBottom) => {
 					payload: { conversations }
 				})
 				scrollToBottom();
+				onsendMsg();
 			})
 		//user_uid_1 == 'myid' and user_uid_2 = 'yourId' OR user_uid_1 = 'yourId' and user_uid_2 = 'myId'
 	}
