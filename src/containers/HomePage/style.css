@@ -6,15 +6,7 @@
     overflow: hidden;
 	padding-top: 61px;
 }
-/* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 600px) {
-	.container {
-		height: 92%;
-	}
-	.messageSections {
-		height: calc(100% - 70px);
-	}
-  }
+
 .listOfUsers{
     width: 30%;
     height: 100%;
@@ -130,3 +122,11 @@
     /* background-image: url(https://i.pinimg.com/originals/be/ac/96/beac96b….jpg); */
     background-size: cover;
 }
+@media screen and (max-width: 600px) {
+	.container {
+		height: 92%;
+	}
+	.messageSections {
+		height: calc(100% - 70px);
+	}
+  }
