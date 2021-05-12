@@ -48,7 +48,7 @@ const HomePage = () => {
 			.catch(error => {
 				console.log(error);
 			})
-			setHeaderBg(setBg());
+		setHeaderBg(setBg());
 		return () => {
 			//cleanup
 			console.log('cleanUp...')
@@ -150,18 +150,16 @@ const HomePage = () => {
 					</div>
 					{
 						chatStarted ?
-							<form>
-								<div className="chatControls">
-									<input
-										value={message}
-										onChange={(e) => setMessage(e.target.value)}
-										placeholder=" message..."
-										style={{ width: '78%' }}
-										ref={keepFocus}
-									/>
-									<audio ref={audioRef} src={require("../../assets/sound1.mp3")} />
-									<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
-								</div>
+							<form className="chatControls">
+								<input
+									value={message}
+									onChange={(e) => setMessage(e.target.value)}
+									placeholder=" message..."
+									style={{ width: '78%' }}
+									ref={keepFocus}
+								/>
+								<audio ref={audioRef} src={require("../../assets/sound1.mp3")} />
+								<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
 							</form>
 							: null
 					}

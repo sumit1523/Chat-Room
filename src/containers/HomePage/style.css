@@ -11,6 +11,9 @@
 	.container {
 		height: 92%;
 	}
+	.messageSections {
+		height: calc(100% - 70px);
+	}
   }
 .listOfUsers{
     width: 30%;
