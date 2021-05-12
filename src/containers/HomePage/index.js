@@ -28,7 +28,7 @@ const HomePage = (props) => {
 
 	const [chatStarted, setChatStarted] = useState(false);
 	const [chatUser, setChatUser] = useState('');
-	const [chatFirstUser, setChatFistNameUser] = useState('');
+	const [senderFirstName, setSenderFistName] = useState('');
 	const [message, setMessage] = useState('');
 	const [userUid, setUserUid] = useState(null);
 
@@ -67,7 +67,7 @@ const HomePage = (props) => {
 	const initChat = (user) => {
 		setChatStarted(true);
 		setChatUser(`${user.firstName} ${user.lastName}`);
-		setChatFistNameUser(`${user.firstName}`);
+		setSenderFistName(`${user.firstName}`);
 		setUserUid(user.uid);
 		dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }, scrollToBottom, onsendMsg));
 	}
@@ -101,8 +101,8 @@ const HomePage = (props) => {
 		<Layout>
 			<section className="container">
 				<div className="listOfUsers">
-					{user.users.length > 0 ?
-						user.users.map(user => {
+					{user && user?.users?.length > 0 ?
+						user?.users.map(user => {
 							return (
 								<User
 									onClick={initChat}
@@ -113,13 +113,10 @@ const HomePage = (props) => {
 						}) : null
 					}
 				</div>
-
 				<div className="chatArea">
 					<div className="messageSections">
 						<div className="chatHeader" style={{ background: `radial-gradient(#${setBg()}, #000000b0)` }}>
-							{
-								chatStarted ? chatUser : 'Welcome to Chat Room'
-							}
+							{chatStarted ? chatUser : 'Welcome to Chat Room'}
 						</div>
 						<div style={{ paddingTop: '40px' }}>
 							{chatStarted ?
@@ -127,7 +124,7 @@ const HomePage = (props) => {
 									<div style={{ textAlign: con.user_uid_1 === auth.uid ? 'right' : 'left', margin: '5px' }}>
 										<div className={con.user_uid_1 === auth.uid ? "messageStyle-right" : "messageStyle-left"} >
 											<div className="sender_pic">
-												{con.user_uid_1 === auth.uid ? auth?.firstName : chatFirstUser}
+												{con.user_uid_1 === auth.uid ? auth?.firstName : senderFirstName}
 											</div>
 											<p>{con.message}</p>
 										</div>

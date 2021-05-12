@@ -64,7 +64,6 @@ export const signin = (user) => {
 		auth()
 			.signInWithEmailAndPassword(user.email, user.password)
 			.then((data) => {
-				console.log(data);
 				const db = firestore();
 				db.collection('users')
 					.doc(data.user.uid)
@@ -79,8 +78,9 @@ export const signin = (user) => {
 						const loggedInUser = {
 							firstName,
 							lastName,
-							uid: data.user.uid,
-							email: data.user.email
+							uid: data?.user?.uid,
+							email: data?.user?.email,
+
 						}
 						localStorage.setItem('user', JSON.stringify(loggedInUser));
 						dispatch({

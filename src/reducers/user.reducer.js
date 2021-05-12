@@ -1,11 +1,11 @@
 import { userConstants } from "../actions/constants"
 
-const intiState = {
+const initialState = {
 	users: [],
 	conversations: []
 }
 
-export default (state = intiState, action) => {
+export default (state = initialState, action) => {
 
 	switch (action.type) {
 		case `${userConstants.GET_REALTIME_USERS}_REQUEST`:
