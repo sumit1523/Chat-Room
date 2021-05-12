@@ -1,5 +1,9 @@
 .loginContainer, .registerContainer{
-    width: 400px;
-    position: relative;
+	width: 400px;
+    position: absolute;
     margin: 50px auto;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
