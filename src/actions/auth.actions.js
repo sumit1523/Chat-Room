@@ -125,7 +125,6 @@ export const logout = (uid) => {
 	return async dispatch => {
 		dispatch({ type: `${authConstanst.USER_LOGOUT}_REQUEST` });
 		//Now lets logout user
-
 		const db = firestore();
 		db.collection('users')
 			.doc(uid)
@@ -133,7 +132,6 @@ export const logout = (uid) => {
 				isOnline: false
 			})
 			.then(() => {
-
 				auth()
 					.signOut()
 					.then(() => {
@@ -145,7 +143,6 @@ export const logout = (uid) => {
 						console.log(error);
 						dispatch({ type: `${authConstanst.USER_LOGOUT}_FAILURE`, payload: { error } })
 					})
-
 			})
 			.catch(error => {
 				console.log(error);

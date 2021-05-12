@@ -20,7 +20,7 @@ const User = (props) => {
 	);
 }
 
-const HomePage = (props) => {
+const HomePage = () => {
 
 	const dispatch = useDispatch();
 	const auth = useSelector(state => state.auth);
@@ -31,6 +31,7 @@ const HomePage = (props) => {
 	const [senderFirstName, setSenderFistName] = useState('');
 	const [message, setMessage] = useState('');
 	const [userUid, setUserUid] = useState(null);
+	const [headerBg, setHeaderBg] = useState('');
 
 	let unsubscribe;
 
@@ -47,15 +48,22 @@ const HomePage = (props) => {
 			.catch(error => {
 				console.log(error);
 			})
-	}, [unsubscribe]);
-
-	//componentWillUnmount
-	useEffect(() => {
+			setHeaderBg(setBg());
 		return () => {
 			//cleanup
+			console.log('cleanUp...')
 			unsubscribe.then(f => f()).catch(error => console.log(error));
 		}
 	}, [unsubscribe]);
+
+	//componentWillUnmount
+	// useEffect(() => {
+	// 	return () => {
+	// 		//cleanup
+	// 		console.log('cleanUP')
+	// 		unsubscribe.then(f => f()).catch(error => console.log(error));
+	// 	}
+	// }, [unsubscribe]);
 
 	const scrollToBottom = () => {
 		endOfMessage.current.scrollIntoView({
@@ -65,6 +73,7 @@ const HomePage = (props) => {
 	}
 
 	const initChat = (user) => {
+		console.log('chat Initiated...')
 		setChatStarted(true);
 		setChatUser(`${user.firstName} ${user.lastName} `);
 		setSenderFistName(`${user.firstName} `);
@@ -86,10 +95,14 @@ const HomePage = (props) => {
 		if (message !== "") {
 			dispatch(updateMessage(msgObj))
 				.then(() => {
-					setMessage('')
+					onsendMsg();
+					setMessage('');
+				})
+				.catch(e => {
+					console.log(e, 'Message not sent');
 				});
 		}
-		onsendMsg();
+
 		keepFocus.current.focus();
 		scrollToBottom();
 	}
@@ -116,7 +129,7 @@ const HomePage = (props) => {
 				</div>
 				<div className="chatArea">
 					<div className="messageSections">
-						<div className="chatHeader" style={{ background: `radial-gradient(#${setBg()}, #000000b0)` }}>
+						<div className="chatHeader" style={{ background: `radial-gradient(#${headerBg}, #000000b0)` }}>
 							{chatStarted ? chatUser : 'Welcome to Chat Room'}
 						</div>
 						<div style={{ paddingTop: '40px' }}>
@@ -142,7 +155,7 @@ const HomePage = (props) => {
 									<input
 										value={message}
 										onChange={(e) => setMessage(e.target.value)}
-										placeholder="Write Message"
+										placeholder=" message..."
 										style={{ width: '78%' }}
 										ref={keepFocus}
 									/>

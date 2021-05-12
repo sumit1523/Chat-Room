@@ -11,7 +11,7 @@ export const getRealtimeUsers = (uid) => {
 			.onSnapshot((querySnapshot) => {
 				const users = [];
 				querySnapshot.forEach(function (doc) {
-					if (doc.data().uid !== uid) {
+					if (doc.data()?.uid !== uid) {
 						users.push(doc.data());
 					}
 				});
@@ -36,14 +36,14 @@ export const updateMessage = (msgObj) => {
 				createdAt: new Date()
 			})
 			.then((data) => {
-				console.log(data)
+				console.log('Message Sent');
 				//success
 				// dispatch({
 				//     type: userConstants.GET_REALTIME_MESSAGES,
 				// })
 			})
 			.catch(error => {
-				console.log(error)
+				console.log(error);
 			});
 
 	}
