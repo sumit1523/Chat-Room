@@ -159,7 +159,7 @@ const HomePage = () => {
 									ref={keepFocus}
 								/>
 								<audio ref={audioRef} src={require("../../assets/sound1.mp3")} />
-								<button style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
+								<button type='submit' style={{ width: '20%', backgroundColor: 'forestgreen' }} onClick={(e) => submitMessage(e)}>Send</button>
 							</form>
 							: null
 					}
