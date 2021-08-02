@@ -8,7 +8,7 @@ const User = (props) => {
 	const { user, onClick, selectedUserUid } = props;
 
 	return (
-		<div onClick={() => onClick(user)} className={`displayName ${selectedUserUid === user.uid ? 'active' : ''}`}>
+		<div onClick={() => selectedUserUid !== user.uid && onClick(user)} className={`displayName ${selectedUserUid === user.uid ? 'active' : ''}`}>
 			<div className="displayPic">
 				<img src="https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg" alt="" />
 			</div>
@@ -18,7 +18,7 @@ const User = (props) => {
 			</div>
 		</div>
 	);
-}
+};
 
 const HomePage = () => {
 
@@ -33,17 +33,18 @@ const HomePage = () => {
 	const [userUid, setUserUid] = useState(null);
 	const [headerBg, setHeaderBg] = useState('');
 
-	let unsubscribe;
+	let getAllUser;
 
 	const keepFocus = useRef(null);
 	const audioRef = useRef();
 	const endOfMessage = useRef(null);
 
 	useEffect(() => {
+		console.log(`getRealtimeUsers`)
 		// eslint-disable-next-line
-		unsubscribe = dispatch(getRealtimeUsers(auth.uid))
-			.then(unsubscribe => {
-				return unsubscribe;
+		getAllUser = dispatch(getRealtimeUsers(auth.uid))
+			.then(allUser => {
+				return allUser;
 			})
 			.catch(error => {
 				console.log(error);
@@ -52,18 +53,18 @@ const HomePage = () => {
 		return () => {
 			//cleanup
 			console.log('cleanUp...')
-			unsubscribe.then(f => f()).catch(error => console.log(error));
+			getAllUser.then(f => f()).catch(error => console.log(error));
 		}
-	}, [unsubscribe]);
+	}, [getAllUser]);
 
 	//componentWillUnmount
 	// useEffect(() => {
 	// 	return () => {
 	// 		//cleanup
 	// 		console.log('cleanUP')
-	// 		unsubscribe.then(f => f()).catch(error => console.log(error));
+	// 		getAllUser.then(f => f()).catch(error => console.log(error));
 	// 	}
-	// }, [unsubscribe]);
+	// }, [getAllUser]);
 
 	const scrollToBottom = () => {
 		endOfMessage.current.scrollIntoView({
@@ -78,11 +79,15 @@ const HomePage = () => {
 		setChatUser(`${user.firstName} ${user.lastName} `);
 		setSenderFistName(`${user.firstName} `);
 		setUserUid(user.uid);
-		dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }, scrollToBottom, onsendMsg));
+		if (!user?.conversations) dispatch(getRealtimeConversations({ uid_1: auth.uid, uid_2: user.uid }, scrollToBottom, onsendMsg));
 	}
 
 	const onsendMsg = () => {
-		audioRef.current.play();
+		// audioRef.current.play();
+	};
+
+	const onChangeMsg = (e) => {
+		setMessage(e.target.value);
 	};
 
 	const submitMessage = (e) => {
@@ -109,7 +114,7 @@ const HomePage = () => {
 	const setBg = () => {
 		return Math.floor(Math.random() * 16777215).toString(16);
 	}
-	console.log(user, 'fsfs');
+	console.log(user, 'users');
 	return (
 		<Layout>
 			<section className="container">
@@ -153,7 +158,7 @@ const HomePage = () => {
 							<form className="chatControls">
 								<input
 									value={message}
-									onChange={(e) => setMessage(e.target.value)}
+									onChange={(e) => onChangeMsg(e)}
 									placeholder=" message..."
 									style={{ width: '78%' }}
 									ref={keepFocus}

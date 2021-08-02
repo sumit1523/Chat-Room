@@ -15,12 +15,13 @@ export const getRealtimeUsers = (uid) => {
 						users.push(doc.data());
 					}
 				});
-				dispatch({
-					type: `${userConstants.GET_REALTIME_USERS}_SUCCESS`,
-					payload: { users }
-				});
+				if (users) {
+					dispatch({
+						type: `${userConstants.GET_REALTIME_USERS}_SUCCESS`,
+						payload: { users }
+					});
+				}
 			});
-
 		return unsubscribe;
 	}
 }

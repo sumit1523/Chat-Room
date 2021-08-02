@@ -29,7 +29,7 @@ const LoginPage = (props) => {
 			alert("Password is required");
 			return;
 		}
-		dispatch(signin({ email, password }));
+		if (!auth.authenticated) dispatch(signin({ email, password }));
 	}
 
 	if (auth.authenticated) {
